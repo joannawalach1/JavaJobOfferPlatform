@@ -1,0 +1,42 @@
+{
+  "realm": "job-platform",
+  "enabled": true,
+  "users": [
+    {
+      "username": "testuser",
+      "enabled": true,
+      "credentials": [
+        {
+          "type": "password",
+          "value": "password"
+        }
+      ],
+      "realmRoles": ["USER"]
+    }
+  ],
+  "roles": {
+    "realm": [
+      {
+        "name": "USER",
+        "description": "Basic user role"
+      },
+      {
+        "name": "ADMIN",
+        "description": "Administrator role"
+      }
+    ]
+  },
+  "clients": [
+    {
+      "clientId": "job-app",
+      "publicClient": false,
+      "directAccessGrantsEnabled": true,
+      "protocol": "openid-connect",
+      "secret": "job-app-secret",
+      "redirectUris": ["*"],
+      "bearerOnly": false,
+      "standardFlowEnabled": true,
+      "serviceAccountsEnabled": false
+    }
+  ]
+}
