@@ -1,0 +1,35 @@
+server:
+  port: 8081
+
+spring:
+  application:
+    name: user-service
+
+  # Konfiguracja bazy danych
+  datasource:
+    url: jdbc:postgresql://localhost:5432/jobplatform
+    username: postgres
+    password: 666666
+    driver-class-name: org.postgresql.Driver
+
+  # Hibernate/JPA
+  jpa:
+    hibernate:
+      ddl-auto: update
+    properties:
+      hibernate:
+        dialect: org.hibernate.dialect.PostgreSQLDialect
+        format_sql: true
+    show-sql: true
+
+  # Kafka
+  kafka:
+    bootstrap-servers: localhost:9092
+    producer:
+      key-serializer: org.apache.kafka.common.serialization.StringSerializer
+      value-serializer: org.springframework.kafka.support.serializer.JsonSerializer
+
+# Logi dla developmentu
+logging:
+  level:
+    com.joboffer: DEBUG
