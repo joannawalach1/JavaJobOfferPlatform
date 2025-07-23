@@ -3,19 +3,16 @@ version: '3.8'
 services:
   # Keycloak
   keycloak:
-    image: quay.io/keycloak/keycloak:23.0
+    image: quay.io/keycloak/keycloak:23.0.2
     environment:
       KEYCLOAK_ADMIN: admin
       KEYCLOAK_ADMIN_PASSWORD: admin
-      KC_DB: postgres
-      KC_DB_URL: jdbc:postgresql://postgres:5432/keycloak
-      KC_DB_USERNAME: postgres
-      KC_DB_PASSWORD: postgres
     ports:
       - "8085:8080"
-    depends_on:
-      - postgres
-    command: start-dev
+    command: start-dev --import-realm
+    volumes:
+      - ./keycloak/realms/realm-export.json:/opt/keycloak/data/import/realm-export.json
+
 
   # Kafka & Zookeeper
   zookeeper:
