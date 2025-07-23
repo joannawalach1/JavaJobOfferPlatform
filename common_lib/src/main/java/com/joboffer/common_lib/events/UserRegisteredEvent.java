@@ -9,12 +9,13 @@ public record UserRegisteredEvent(
         String email,
         String firstName,
         String lastName,
-        LocalDateTime registeredAt
-) {
+        LocalDateTime registeredAt,
+        LocalDateTime updatedAt) {
 
     public static UserRegisteredEvent createEvent(
             UUID userId, String email,
-            String firstName, String lastName
+            String firstName, String lastName,
+            LocalDateTime createdAt, LocalDateTime updatedAt
     ) {
         return new UserRegisteredEvent(
                 UUID.randomUUID(),
@@ -22,7 +23,8 @@ public record UserRegisteredEvent(
                 email,
                 firstName,
                 lastName,
-                LocalDateTime.now()
+                createdAt,
+                updatedAt
         );
     }
 }
